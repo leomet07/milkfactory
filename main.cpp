@@ -42,8 +42,8 @@ void printMap(map<int, vector<int>> &mp){ // & so passes by reference
 
 }
 int main() {
-    ifstream cin("factory.in");
-    ofstream cout("factory.out");
+    // ifstream cin("factory.in");
+    // ofstream cout("factory.out");
 
     ios::sync_with_stdio(0);
 	cin.tie(0);
@@ -52,34 +52,57 @@ int main() {
     cin >> n;
     set<int> stations;
     map<int, vector<int>> belts;
-    bool isA = true;
-    int a;
-    while (stations.size() < n ){ // Recieve station data
-        int s;
-        cin >> s;
-        if (isA){
-            a = s;
-        }else{
+    // bool isA = true;
+    // int a;
+    // while (stations.size() < n ){ // Recieve station data
+    //     int s;
+    //     cin >> s;
+    //     if (isA){
+    //         a = s;
+    //     }else{
             
-            // cout << "S: " << s << " A: "<< a << endl;
-            // check if connection exists
-            if (belts.count(s) == 0){
-                belts.insert(pair<int, vector<int>>(s , {a}));
+    //         // cout << "S: " << s << " A: "<< a << endl;
+    //         // check if connection exists
+    //         if (belts.count(s) == 0){
+    //             belts.insert(pair<int, vector<int>>(s , {a}));
+    //             // cout << "S: " << s << " A: "<< a << endl;
+    //             // printMap(belts);
+                
+    //         } else{
+    //             vector<int> h = belts.at(s);
+    //             h.push_back(a);
+    //             // cout << "New vector len: " << h.size() << endl; 
+    //             // belts.insert(pair<int, vector<int>>(s , h));
+    //             belts[s] = h;
+    //         }
+
+    //         stations.insert(a);
+    //         stations.insert(s);
+    //     }
+    //     isA = !isA;
+    // }
+
+    for (int i = 0; i < n -1; i++){
+        int a, b;
+        cin >> a;
+        cin >> b;
+
+        if (belts.count(b) == 0){
+                belts.insert(pair<int, vector<int>>(b , {a}));
                 // cout << "S: " << s << " A: "<< a << endl;
                 // printMap(belts);
                 
-            } else{
-                vector<int> h = belts.at(s);
+        } else{
+                vector<int> h = belts.at(b);
                 h.push_back(a);
                 // cout << "New vector len: " << h.size() << endl; 
                 // belts.insert(pair<int, vector<int>>(s , h));
-                belts[s] = h;
-            }
-
-            stations.insert(a);
-            stations.insert(s);
+                belts[b] = h;
         }
-        isA = !isA;
+
+        stations.insert(a);
+        stations.insert(b);
+
     }
 
     // printMap(belts);
