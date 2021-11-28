@@ -2,25 +2,30 @@
 #include <vector>
 #include <set>
 #include <map>
+#include <bits/stdc++.h>
+
 using namespace std;
  
-int getInt(){
-    int i;
-    cin >> i;
-    return i;
-}
 
 int main() {
+    ifstream cin("factory.in");
+    ofstream cout("factory.out");
+
     ios::sync_with_stdio(0);
 	cin.tie(0);
 
-    int n = getInt();
+    
+
+
+    int n;
+    cin >> n;
     set<int> stations;
     map<int, int> belts;
     bool isA = true;
     int a;
     while (stations.size() < n){ // Recieve station data
-        int s = getInt();
+        int s;
+        cin >> s;
         // cout << "S: " << s << "IsA: " << isA << endl; 
         if (isA){
             a = s;
@@ -70,6 +75,7 @@ int main() {
     }
     cout << min_all << endl;
     // cout << "Comp Template" << endl;    
+
     return 0;
 
 }
