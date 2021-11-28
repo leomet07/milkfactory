@@ -42,8 +42,8 @@ void printMap(map<int, vector<int>> &mp){ // & so passes by reference
 
 }
 int main() {
-    // ifstream cin("factory.in");
-    // ofstream cout("factory.out");
+    ifstream cin("factory.in");
+    ofstream cout("factory.out");
 
     ios::sync_with_stdio(0);
 	cin.tie(0);
