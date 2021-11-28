@@ -4,19 +4,19 @@ using namespace std;
 
 void dfs(set<int> &visited, map<int, vector<int>> graph, int node){
     // Do the DFS
-    cout << "Inner DFS" << endl;
+    // cout << "Inner DFS" << endl;
     if (visited.find(node) == visited.end()){ // if doesnt exist
         visited.insert(node);
-        cout << "Dfs is on node: " << node <<endl;
+        // cout << "Dfs is on node: " << node <<endl;
         if (graph.count(node) > 0){
             vector<int> neighbors = graph.at(node);
-            cout << "Found neighbors" << endl;
+            // cout << "Found neighbors" << endl;
             for (int i = 0; i < neighbors.size(); i++){
                 int neighbor = neighbors[i];
-                cout << "Neighbor: " << neighbor << endl;
+                // cout << "Neighbor: " << neighbor << endl;
                 
                 dfs(visited, graph, neighbor);
-                cout << "dfs neighbor call finished??? " << endl;
+                // cout << "dfs neighbor call finished??? " << endl;
                 
             }
         }
@@ -42,8 +42,8 @@ void printMap(map<int, vector<int>> &mp){ // & so passes by reference
 
 }
 int main() {
-    // ifstream cin("factory.in");
-    // ofstream cout("factory.out");
+    ifstream cin("factory.in");
+    ofstream cout("factory.out");
 
     ios::sync_with_stdio(0);
 	cin.tie(0);
@@ -61,17 +61,17 @@ int main() {
             a = s;
         }else{
             
-            cout << "S: " << s << " A: "<< a << endl;
+            // cout << "S: " << s << " A: "<< a << endl;
             // check if connection exists
             if (belts.count(s) == 0){
                 belts.insert(pair<int, vector<int>>(s , {a}));
                 // cout << "S: " << s << " A: "<< a << endl;
-                printMap(belts);
+                // printMap(belts);
                 
             } else{
                 vector<int> h = belts.at(s);
                 h.push_back(a);
-                cout << "New vector len: " << h.size() << endl; 
+                // cout << "New vector len: " << h.size() << endl; 
                 // belts.insert(pair<int, vector<int>>(s , h));
                 belts[s] = h;
             }
@@ -82,14 +82,14 @@ int main() {
         isA = !isA;
     }
 
-    printMap(belts);
-    cout << "------" << endl;
+    // printMap(belts);
+    // cout << "------" << endl;
     // iterate through every station
     set<int>::iterator sitr;
     int min_all = -1;
     for(sitr = stations.begin(); sitr != stations.end(); sitr++){
         int b = *sitr;
-        cout << "Current: " << b << endl;
+        // cout << "Current: " << b << endl;
         set<int> check = stations;
         check.erase(*sitr);
 
@@ -101,35 +101,35 @@ int main() {
         if (belts.count(b) > 0){
             set<int> visited;
             dfs(visited, belts, b );
-            cout << "Full dfs is finished" << endl;
-            cout << "Visited size: " << visited.size() << endl;
+            // cout << "Full dfs is finished" << endl;
+            // cout << "Visited size: " << visited.size() << endl;
             // print the set
             set<int>::iterator vitr;
             for (vitr= visited.begin(); vitr!= visited.end(); vitr++){
-                cout << "Element in visited: " << *vitr << endl;
+                // cout << "Element in visited: " << *vitr << endl;
             }
 
             for(citr = check.begin(); citr != check.end(); citr++){
                 int a = *citr;
                 // Check
-                cout << "Citr: " << a << endl;
+                // cout << "Citr: " << a << endl;
                 
                 if (visited.find(a) != visited.end()){
                     // hit all
-                    cout <<"Increment r" << endl;
+                    // cout <<"Increment r" << endl;
                     reached++;
                 }
             }
         } else{
-            cout << "Does not exist so will not bother" << endl;
+            // cout << "Does not exist so will not bother" << endl;
         }
 
         
-        cout << "Reached: " << reached <<endl;
-        cout << "---------------" << endl;
+        // cout << "Reached: " << reached <<endl;
+        // cout << "---------------" << endl;
 
         if (reached == n - 1){
-            cout << "Inside final if" << endl;
+            // cout << "Inside final if" << endl;
             // new record
             if (min_all == -1 || b < min_all){
                 min_all = b;
